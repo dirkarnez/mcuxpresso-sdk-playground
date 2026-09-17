@@ -5,9 +5,9 @@
 
 cmake_minimum_required(VERSION 3.22.0)
 
-include(
-    ${SdkRootDirPath}/cmake/extension/mcux.cmake
-)
+set(SdkRootDirPath "$ENV{MCUXPRESSO_SDK_DIR}")
+message(STATUS "SdkRootDirPath = ${SdkRootDirPath}")
+include(${SdkRootDirPath}/cmake/extension/mcux.cmake)
 
 project(hello_world_secondary_core LANGUAGES C CXX ASM PROJECT_BOARD_PORT_PATH ${board_root}/${board}/multicore_examples/hello_world)
 
