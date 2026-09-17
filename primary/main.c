@@ -8,7 +8,7 @@
 #include "fsl_debug_console.h"
 #include "board.h"
 #include "app.h"
-#include "mcmgr.h"
+// #include "mcmgr.h"
 
 /*******************************************************************************
  * Definitions
