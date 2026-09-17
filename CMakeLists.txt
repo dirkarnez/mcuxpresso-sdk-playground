@@ -8,6 +8,3 @@ message(STATUS "SdkRootDirPath = ${SdkRootDirPath})
 
 include(${SdkRootDirPath}/cmake/extension/mcux.cmake)
 include(${SdkRootDirPath}/CMakeLists.txt)
-
-# add_subdirectory("primary")
-# add_subdirectory("secondary")
