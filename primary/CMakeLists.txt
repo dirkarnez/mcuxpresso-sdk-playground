@@ -5,7 +5,7 @@
 
 cmake_minimum_required(VERSION 3.22.0)
 
-project(hello_world_primary_core LANGUAGES C CXX ASM)
+project(hello_world_primary_core LANGUAGES C)
 
 mcux_add_source(
     SOURCES main.c
