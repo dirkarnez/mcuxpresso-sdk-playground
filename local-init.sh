@@ -41,8 +41,8 @@ cd mcuxpresso-sdk && \
 west update_board --set board evkbmimxrt1170 && \
 cd $SCRIPT_DIR && \
 source ./mcuxpresso-sdk/mcuxsdk/mcux-env.sh && \
-west build -b evkbmimxrt1170 --sysbuild ./secondary -Dcore_id=cm4 --config flexspi_nor_release --toolchain=armgcc -p always -d cmake-build && \
-west build -b evkbmimxrt1170 --sysbuild ./primary -Dcore_id=cm7 --config flexspi_nor_release --toolchain=armgcc -p always -d cmake-build && \
+west build -b evkbmimxrt1170 --sysbuild ./primary -Dcore_id=cm7 --config flexspi_nor_release --toolchain=armgcc -p always -d cmake-build -- -j 1 && \
 ls && \
 echo ok
+
 
