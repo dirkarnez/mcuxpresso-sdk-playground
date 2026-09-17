@@ -5,4 +5,4 @@ message(STATUS "SdkRootDirPath = ${SdkRootDirPath}")
 include(${SdkRootDirPath}/cmake/extension/mcux.cmake)
 include(${SdkRootDirPath}/CMakeLists.txt)
 
-project(hello_world LANGUAGES C CXX ASM)
+project(hello_world LANGUAGES C)
