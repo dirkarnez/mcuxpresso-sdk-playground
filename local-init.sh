@@ -27,6 +27,7 @@ cd /opt; \
 cd $SCRIPT_DIR
 
 export ARMGCC_DIR="/opt/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi"
+export MCUXPRESSO_SDK_DIR="$SCRIPT_DIR/mcuxpresso-sdk/mcuxsdk"
 
 # # Get the latest SDK from main branch:
 # west init -m https://github.com/nxp-mcuxpresso/mcuxsdk-manifests.git mcuxpresso-sdk && \
