@@ -1,5 +1,6 @@
 # /bin/bash
 
+
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 # git version 2.55.0
@@ -35,11 +36,11 @@ export ARMGCC_DIR="/opt/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi"
 # west build -b evkbmimxrt1170 --sysbuild ./examples/multicore_examples/hello_world/primary -Dcore_id=cm7 --config release --toolchain=armgcc -p always -d cmake-build && \
 # echo ok
 
-
 west init -m https://github.com/nxp-mcuxpresso/mcuxsdk-manifests.git mcuxpresso-sdk && \
 cd mcuxpresso-sdk && \
 west update_board --set board evkbmimxrt1170 && \
-cd .. && \
+cd $SCRIPT_DIR && \
+source ./mcuxpresso-sdk/mcuxsdk/mcux-env.sh && \
 west build -b evkbmimxrt1170 --sysbuild . -Dcore_id=cm7 --config release --toolchain=armgcc -p always -d cmake-build && \
 ls && \
 echo ok
