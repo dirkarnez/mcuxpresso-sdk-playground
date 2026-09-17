@@ -5,7 +5,7 @@
 
 cmake_minimum_required(VERSION 3.22.0)
 
-set(SdkRootDirPath "/home/runner/work/mcuxpresso-sdk-playground/mcuxpresso-sdk-playground/mcuxpresso-sdk/mcuxsdk")
+set(SdkRootDirPath "$ENV{MCUXPRESSO_SDK_DIR}")
 message(STATUS "SdkRootDirPath = ${SdkRootDirPath}")
 include(${SdkRootDirPath}/cmake/extension/mcux.cmake)
 
