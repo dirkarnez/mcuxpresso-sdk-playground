@@ -28,10 +28,18 @@ cd $SCRIPT_DIR
 export ARMGCC_DIR="/opt/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi"
 
 # # Get the latest SDK from main branch:
+# west init -m https://github.com/nxp-mcuxpresso/mcuxsdk-manifests.git mcuxpresso-sdk && \
+# cd mcuxpresso-sdk && \
+# west update_board --set board evkbmimxrt1170 && \
+# cd mcuxsdk && \
+# west build -b evkbmimxrt1170 --sysbuild ./examples/multicore_examples/hello_world/primary -Dcore_id=cm7 --config release --toolchain=armgcc -p always -d cmake-build && \
+# echo ok
+
+
 west init -m https://github.com/nxp-mcuxpresso/mcuxsdk-manifests.git mcuxpresso-sdk && \
 cd mcuxpresso-sdk && \
 west update_board --set board evkbmimxrt1170 && \
-cd mcuxsdk && \
-west build -b evkbmimxrt1170 --sysbuild ./examples/multicore_examples/hello_world/primary -Dcore_id=cm7 --config release --toolchain=armgcc -p always -d cmake-build && \
+cd .. && \
+west build -b evkbmimxrt1170 --sysbuild . -Dcore_id=cm7 --config release --toolchain=armgcc -p always -d cmake-build && \
 echo ok
 
