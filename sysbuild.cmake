@@ -1,4 +1,3 @@
-mcuxpresso-sdk-playground/cmake-build/primary
 
 ExternalMCUXProject_Add(
         APPLICATION hello_world_primary_core
