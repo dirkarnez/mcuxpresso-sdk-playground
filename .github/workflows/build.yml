@@ -33,12 +33,12 @@ jobs:
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
-          directory: "mcuxpresso-sdk/mcuxsdk/examples/multicore_examples/hello_world"
+          directory: "cmake-build"
           filename: "${{ github.event.repository.name }}-${{ github.ref_name }}.zip"
           
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "mcuxpresso-sdk/mcuxsdk/examples/multicore_examples/hello_world/${{ github.event.repository.name }}-${{ github.ref_name }}.zip"
+          artifacts: "cmake-build/${{ github.event.repository.name }}-${{ github.ref_name }}.zip"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
