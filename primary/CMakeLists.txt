@@ -8,9 +8,12 @@ cmake_minimum_required(VERSION 3.22.0)
 set(SdkRootDirPath "/home/runner/work/mcuxpresso-sdk-playground/mcuxpresso-sdk-playground/mcuxpresso-sdk/mcuxsdk")
 message(STATUS "SdkRootDirPath = ${SdkRootDirPath}")
 include(${SdkRootDirPath}/cmake/extension/mcux.cmake)
-include(${SdkRootDirPath}/CMakeLists.txt)
 
 project(hello_world_primary_core LANGUAGES C)
+
+include(${SdkRootDirPath}/CMakeLists.txt)
+include(${SdkRootDirPath}/${board_root}/${board}/multicore_examples/hello_world/${core_id}/reconfig.cmake OPTIONAL)
+include(${SdkRootDirPath}/${board_root}/${board}/multicore_examples/reconfig.cmake OPTIONAL)
 
 mcux_add_source(
     SOURCES main.c
