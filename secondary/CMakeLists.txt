@@ -9,7 +9,7 @@ include(
     ${SdkRootDirPath}/cmake/extension/mcux.cmake
 )
 
-project(hello_world_secondary_core LANGUAGES C)
+project(hello_world_secondary_core LANGUAGES C CXX ASM PROJECT_BOARD_PORT_PATH ${board_root}/${board}/multicore_examples/hello_world)
 
 include(
     ${SdkRootDirPath}/CMakeLists.txt
