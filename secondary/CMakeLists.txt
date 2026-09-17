@@ -5,14 +5,7 @@
 
 cmake_minimum_required(VERSION 3.22.0)
 
-include(${SdkRootDirPath}/cmake/extension/mcux.cmake)
-
 project(hello_world_secondary_core LANGUAGES C)
-
-include(${SdkRootDirPath}/CMakeLists.txt)
-
-include(${CMAKE_CURRENT_LIST_DIR}/../../config.cmake)
-include(${SdkRootDirPath}/${board_root}/${board}/multicore_examples/hello_world/${core_id}/reconfig.cmake OPTIONAL)
 
 mcux_add_source(
     SOURCES main.c
