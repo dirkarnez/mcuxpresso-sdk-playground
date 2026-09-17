@@ -4,5 +4,10 @@ project(hello_world LANGUAGES C CXX ASM)
 
 set(SdkRootDirPath "mcuxpresso-sdk/mcuxsdk")
 
-add_subdirectory("primary")
-add_subdirectory("secondary")
+message(STATUS "SdkRootDirPath = ${SdkRootDirPath})
+
+include(${SdkRootDirPath}/cmake/extension/mcux.cmake)
+include(${SdkRootDirPath}/CMakeLists.txt)
+
+# add_subdirectory("primary")
+# add_subdirectory("secondary")
