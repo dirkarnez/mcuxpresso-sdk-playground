@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.30.0)
 
 project(hello_world LANGUAGES C CXX ASM)
 
-set(SdkRootDirPath "mcuxpresso-sdk/mcuxsdk")
+set(SdkRootDirPath "/home/runner/work/mcuxpresso-sdk-playground/mcuxpresso-sdk-playground/mcuxpresso-sdk/mcuxsdk")
 
 message(STATUS "SdkRootDirPath = ${SdkRootDirPath}")
 
