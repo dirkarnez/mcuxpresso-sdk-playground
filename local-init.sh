@@ -41,5 +41,6 @@ cd mcuxpresso-sdk && \
 west update_board --set board evkbmimxrt1170 && \
 cd .. && \
 west build -b evkbmimxrt1170 --sysbuild . -Dcore_id=cm7 --config release --toolchain=armgcc -p always -d cmake-build && \
+ls && \
 echo ok
 
