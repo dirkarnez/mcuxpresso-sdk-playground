@@ -41,6 +41,7 @@ fi
 
 if [ ! -f "$ENV_FILE" ]; then
     echo "$ENV_FILE not found. Downloading now..."
+    cd $SCRIPT_DIR && \
     west init -m https://github.com/nxp-mcuxpresso/mcuxsdk-manifests.git mcuxpresso-sdk && \
     cd mcuxpresso-sdk && \
     west update_board --set board $BOARD && \
