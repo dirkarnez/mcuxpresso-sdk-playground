@@ -93,5 +93,3 @@ cd "$SCRIPT_DIR" && \
 source "$ENV_FILE" && \
 west build -b $BOARD --sysbuild ./primary -Dcore_id=cm7 --config debug --toolchain=armgcc -p always -d cmake-build && \
 echo ok
-
-read -p "Completed"
