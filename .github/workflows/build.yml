@@ -46,8 +46,6 @@ jobs:
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: |
-            "cmake-build/${{ github.event.repository.name }}-${{ github.ref_name }}.zip"
-            "mcuxpresso-sdk/${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}.zip"
+          artifacts: "cmake-build/${{ github.event.repository.name }}-${{ github.ref_name }}.zip,mcuxpresso-sdk/${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}.zip"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
