@@ -1,4 +1,4 @@
-name: CI
+name: Build and Release
 
 on:
   push:
@@ -29,6 +29,11 @@ jobs:
       
       - run: ./local-init.sh
 
+      - name: Archive SDK
+        working-directory: "mcuxpresso-sdk"
+        run: |
+          zip -s 100m --symlinks -r "${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}.zip" .
+          
       - name: Archive Release
         uses: thedoctor0/zip-release@master
         with:
@@ -36,16 +41,9 @@ jobs:
           directory: "cmake-build"
           filename: "${{ github.event.repository.name }}-${{ github.ref_name }}.zip"
           
-      - name: Archive Release
-        uses: thedoctor0/zip-release@master
-        with:
-          type: 'zip'
-          directory: "mcuxpresso-sdk"
-          filename: "${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}.zip"
-          
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "cmake-build/${{ github.event.repository.name }}-${{ github.ref_name }}.zip,mcuxpresso-sdk/${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}.zip"
+          artifacts: "cmake-build/${{ github.event.repository.name }}-${{ github.ref_name }}.zip,mcuxpresso-sdk/${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}.zip*"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
