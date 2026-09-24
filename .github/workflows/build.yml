@@ -2,9 +2,9 @@ name: Build and Release
 
 on:
   push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    # # Sequence of patterns matched against refs/tags
+    # tags:
+    #   - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
       
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -33,6 +33,7 @@ jobs:
       - run: |
           ./local-init.sh
           echo $BOARD
+          exit 1
         
       - name: Archive SDK
         working-directory: "mcuxpresso-sdk"
