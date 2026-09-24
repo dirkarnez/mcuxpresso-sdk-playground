@@ -2,9 +2,9 @@ name: Build and Release
 
 on:
   push:
-    # # Sequence of patterns matched against refs/tags
-    # tags:
-    #   - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
       
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -30,15 +30,15 @@ jobs:
       - if: ${{ matrix.os == 'ubuntu-latest' }}
         run: sudo chmod +x -R .
 
-      - run: |
-          ./local-init.sh
-          echo $BOARD
-          exit 1
+      - id: init
+        run: |
+          source ./local-init.sh && \
+          echo "BOARD=$BOARD" >> "$GITHUB_OUTPUT"
         
       - name: Archive SDK
         working-directory: "mcuxpresso-sdk"
         run: |
-          zip -s 100m --symlinks -r "${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}-${{ matrix.os }}.zip" .
+          zip -s 100m --symlinks -r "mcuxpresso-sdk-${{ github.ref_name }}-${{ steps.init.outputs.BOARD }}.zip" .
           
       - name: Archive Release
         uses: thedoctor0/zip-release@master
@@ -50,6 +50,6 @@ jobs:
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "cmake-build/${{ github.event.repository.name }}-${{ github.ref_name }}-${{ matrix.os }}.zip,mcuxpresso-sdk/${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}-${{ matrix.os }}.z*"
+          artifacts: "cmake-build/${{ github.event.repository.name }}-${{ github.ref_name }}-${{ matrix.os }}.zip,mcuxpresso-sdk/mcuxpresso-sdk-${{ github.ref_name }}-${{ steps.init.outputs.BOARD }}.z*"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
