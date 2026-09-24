@@ -30,7 +30,9 @@ jobs:
       - if: ${{ matrix.os == 'ubuntu-latest' }}
         run: sudo chmod +x -R .
 
-      - run: ./local-init.sh
+      - run: |
+          ./local-init.sh
+          echo $BOARD
         
       - name: Archive SDK
         working-directory: "mcuxpresso-sdk"
