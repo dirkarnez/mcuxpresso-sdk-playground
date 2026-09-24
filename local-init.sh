@@ -6,7 +6,6 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 export MCUXPRESSO_SDK_DIR="$SCRIPT_DIR/mcuxpresso-sdk/mcuxsdk"
 export ENV_FILE="$MCUXPRESSO_SDK_DIR/mcux-env.sh"
-export BOARD="evkbmimxrt1170"
 
 case "$(uname -s)" in
 Linux*)
