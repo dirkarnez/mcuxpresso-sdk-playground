@@ -17,7 +17,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ windows-latest, ubuntu-latest ]
+        os: [ ubuntu-latest ] # windows-latest
     defaults:
       run:
         shell: bash
@@ -29,9 +29,9 @@ jobs:
       
       - if: ${{ matrix.os == 'ubuntu-latest' }}
         run: sudo chmod +x -R .
-      
-      - run: ./local-init.sh
 
+      - run: ./local-init.sh
+        
       - name: Archive SDK
         working-directory: "mcuxpresso-sdk"
         run: |
