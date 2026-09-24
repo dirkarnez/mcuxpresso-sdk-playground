@@ -13,37 +13,40 @@ concurrency:
 permissions:
     contents: write
     
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        os: [ windows-latest, ubuntu-latest ]
+    defaults:
+      run:
+        shell: bash
+    runs-on: ${{ matrix.os }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v6
-
-      - run: sudo chmod +x -R .
+      
+      - if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: sudo chmod +x -R .
       
       - run: ./local-init.sh
 
       - name: Archive SDK
         working-directory: "mcuxpresso-sdk"
         run: |
-          zip -s 100m --symlinks -r "${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}.zip" .
+          zip -s 100m --symlinks -r "${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}-${{ matrix.os }}.zip" .
           
       - name: Archive Release
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
           directory: "cmake-build"
-          filename: "${{ github.event.repository.name }}-${{ github.ref_name }}.zip"
+          filename: "${{ github.event.repository.name }}-${{ github.ref_name }}-${{ matrix.os }}.zip"
           
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "cmake-build/${{ github.event.repository.name }}-${{ github.ref_name }}.zip,mcuxpresso-sdk/${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}.z*"
+          artifacts: "cmake-build/${{ github.event.repository.name }}-${{ github.ref_name }}-${{ matrix.os }}.zip,mcuxpresso-sdk/${{ github.event.repository.name }}-mcuxpresso-sdk-${{ github.ref_name }}-${{ matrix.os }}.z*"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
